@@ -18,6 +18,7 @@ const app = new Vue({
                     slug: this.slug
                 })
             })
+            console.log(response);
             this.created = await response.json();
         }
     }
