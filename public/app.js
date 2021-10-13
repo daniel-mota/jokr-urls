@@ -8,8 +8,9 @@ const app = new Vue({
     methods: {
         async createUrl() {
             console.log(this.url, this.slug)
+            console.log(`${process.env.URL}/url`);
             try {
-                const response = await fetch('/url', {
+                const response = await fetch(`${process.env.URL}/url`, {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
