@@ -19,11 +19,11 @@ const app = new Vue({
                         slug: this.slug
                     })
                 })
+                console.log(response);
+                this.created = await response.json();
             } catch (error) {
                 console.log(error);
             }
-            console.log(response);
-            this.created = await response.json();
         }
     }
 })
