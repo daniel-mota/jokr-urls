@@ -3,7 +3,9 @@ const app = new Vue({
     data: {
         url: '',
         slug: '',
-        created: null
+        created: null,
+        formVisible: true,
+        error: ''
     },
     methods: {
         async createUrl() {
@@ -16,10 +18,16 @@ const app = new Vue({
                     },
                     body: JSON.stringify({
                         url: this.url,
-                        slug: this.slug
+                        slug: this.slug || undefined
                     })
                 })
-                this.created = await response.json();
+                const result = await response.json();
+                if (response.ok) {
+                    this.formVisible = false;
+                    this.created = `https://jokrurls.herokuapp.com/${result.slug}`
+                } else {
+                    this.error = result.message
+                }
             } catch (error) {
                 console.log(error);
             }

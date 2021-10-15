@@ -48,7 +48,7 @@ app.get('/:id', async (req, res, next) => {
 
 
 const schema = yup.object().shape({
-    slug: yup.string().trim().matches(/[\w\-]/i),
+    slug: yup.string().trim().matches(/^[\w\-]+$/i),
     url: yup.string().trim().url().required()
 })
 
@@ -60,6 +60,9 @@ app.post('/url', async (req, res, next) => {
             slug,
             url
         })
+        if (url.includes('jokrurls')) {
+            throw new Error('Stop it.')
+        }
         if (!slug) {
             slug = nanoid(5);
         } else {

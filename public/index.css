@@ -17,3 +17,11 @@ header h1 {
   width: 60%;
   margin: 0 auto;
 }
+
+.error {
+  color: red;
+}
+
+.created {
+  text-align: center;
+}

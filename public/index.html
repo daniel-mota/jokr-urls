@@ -13,7 +13,9 @@
       <h1>Now, you and your buddies can shorten urls.</h1>
     </header>
     <main id="app">
-      <form @submit.prevent="createUrl()">
+      <form v-if="formVisible" @submit.prevent="createUrl()">
+        <div class="error" v-if="error">{{error}}</div>
+
         <label for="url">Url</label>
         <input v-model="url" name="url" id="url" />
 
@@ -21,7 +23,9 @@
         <input v-model="slug" name="slug" id="slug" />
         <button type="submit">Create</button>
       </form>
-      <pre v-if="created">{{ JSON.stringify(created, null, 2) }}</pre>
+      <div v-if="created">
+        <p>Your short url is: <a :href="created">{{created}}</a></p>
+      </div>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script src="app.js"></script>
