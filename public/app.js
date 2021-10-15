@@ -31,6 +31,13 @@ const app = new Vue({
             } catch (error) {
                 console.log(error);
             }
+        },
+        createAnother() {
+            this.created = null
+            this.formVisible = true
+            this.url = ''
+            this.slug = ''
+            this.error = ''
         }
     }
 })
